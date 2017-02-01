@@ -1,0 +1,65 @@
+class Person {
+    
+    
+    var firstName = ""
+    var lastName = ""
+    /* -> var fullName  <- has to be computed proptery KP */
+    var fullName:(String){
+        get {
+            return  ("\(person.firstName) \(person.lastName)")
+        }
+    }
+    
+    
+    /*init should be part of the class KP*/
+    /* init can only return nil, but it does set value, no need for ->return "\(firstName) \(lastName)" KP*/
+    
+    init(firstName:String, lastName:String)  {
+        
+        self.firstName = firstName
+        self.lastName = lastName
+    }
+    
+    func greet(_ thePerson:Person) -> String {
+        //missing a comma KP
+        return "Hello, \(thePerson.firstName)!"
+    }
+    
+} /* <----class ends here */
+
+// Test
+let person = Person(firstName: "Alice", lastName: "Johnson")
+assert(person.firstName == "Alice", person.firstName)
+assert(person.lastName == "Johnson", person.lastName)
+
+/*: section2
+ 
+ ## Question 2
+ 
+ Create a _computed property_ for your `Person` class called `fullName`. This property should return the `Person`'s first and last name separated by a space as a single string.
+ 
+ You can add this property to the class definition you wrote in Question #1.
+ */
+
+
+// Test
+assert(person.fullName == "Alice Johnson", person.fullName)
+
+/*: section3
+ 
+ ## Question 3
+ 
+ Now we're going to work on methods for a bit. Create a new method for your `Person` class called `greet(_:)`. `greet(_:)` should take one parameter, another `Person` object, and return a string that says "Hello, <person's first name>!"
+ 
+ You can add this method to the class definition you wrote in Question #1.
+ */
+
+
+// Test
+let friend = Person(firstName: "Phil", lastName: "Davies")
+var greeting = person.greet(friend)
+assert(greeting == "Hello, Phil!", greeting)
+greeting = friend.greet(person)
+assert(greeting == "Hello, Alice!", greeting)
+
+/*: section4
